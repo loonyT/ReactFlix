@@ -15,7 +15,8 @@ const base_url = "https://image.tmdb.org/t/p/original/";
 
 function Row({
     title,
-    fetchUrl
+    fetchUrl,
+    isLargeRow
 }) {
 
 
@@ -80,11 +81,14 @@ function Row({
                 img
                 /* here, this is a react property which is being used : react render just what is needs to render and not the hole thing*/
                 key = {
-                    movie.id
+                    movie
                 }
-                className = "row__poster"
+                className = {
+                    `row__poster ${isLargeRow && "row_posterLarge"}`
+                }
                 src = {
-                    `${base_url}${movie.poster_path}`
+                    `${base_url}${
+                    isLargeRow ? movie.poster_path : movie.backdrop_path }`
                 }
                 alt = {
                     movie.name

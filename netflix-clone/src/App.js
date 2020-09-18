@@ -1,21 +1,41 @@
 import React from 'react';
 import './App.css';
 import Row from './Row';
-import requests from
-
+import requests from "./requests";
+import Banner from './banner';
 
 
 function App() {
     return ( <
         div className = "App" >
+
+        {
+            /* Navbar    */ }
+
+
+        {
+            /*  Banner   */ }
+
+
+
+
+
+
+
+
         <
         h1 >
         let 's build a netflix clone with react fellows !</h1> <
-        Row title = "NETFLIX ORIGINALS"
+        Row title = "REACTFLIX ORIGINALS"
         fetchUrl = {
             requests.fetchNetflixOriginals
         }
-        />  <
+
+        isLargeRow
+
+        /
+        >
+        <
         Row title = "Trending now"
         fetchUrl = {
             requests.fetchTrending
