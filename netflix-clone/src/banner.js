@@ -5,7 +5,7 @@ import React, {
 import axios from './axios';
 
 import requests from './requests';
-import Banner from "./Banner";
+import Banner from "./Banner.css";
 
 function Banner() {
 
@@ -26,9 +26,21 @@ function Banner() {
         fetchData();
     }, []);
 
+//gets a string a return a number : to get the nb of chars in a text for instance
+        
+function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n-1) + "..." : str;
+}        
+
+
+
+
+
+
 
 return ({
-        /*acting on the background top image */ } <
+        /*acting on the background top image */
+    } <
     header className = "banner"
     style = {
         {
@@ -50,8 +62,10 @@ return ({
     div className = "banner__contents" > {
         ""
     } {
-        /* <<<Background image */ } {
-        /*title */ } <
+        /* <<<Background image */
+    } {
+        /*title */
+    } <
     h1 >
 
 
@@ -73,22 +87,22 @@ return ({
     /div>
 
 
-    <
-    h1 className = "banner__description" > (movie ? .overview)
+    <h1 className = "banner__description"> {truncate(movie ? .overview, 150)}
 
 
-    <
-    /h1>
+    </h1>
 
 
 
 
 
     {
-        /*div > 2 buttons */ } {
-        /* description */ } <
-    /div> <
-    /header>
+        /*div > 2 buttons */
+    } {
+        /* description */
+    } <
+    /div> < /
+    header >
 
 )
 

@@ -3,29 +3,28 @@ import './App.css';
 import Row from './Row';
 import requests from "./requests";
 import Banner from './banner';
+import Nav from "./Nav";
 
 
 function App() {
-    return ( <
-        div className = "App" >
+    return (<div className = "App">
 
-        {
-            /* Navbar    */ }
+            
+        {/* Navbar    */ }
 
+<Nav />
+        {/*  Banner   */ }
 
-        {
-            /*  Banner   */ }
-
-
-
-
+<Banner />
+            
+            <Row
 
 
 
+//the rows here are actualy the components 
 
-        <
-        h1 >
-        let 's build a netflix clone with react fellows !</h1> <
+
+        <h1> lets build a netflix clone with react fellows </h1> 
         Row title = "REACTFLIX ORIGINALS"
         fetchUrl = {
             requests.fetchNetflixOriginals
@@ -35,8 +34,7 @@ function App() {
 
         /
         >
-        <
-        Row title = "Trending now"
+        <Row title = "Trending now"
         fetchUrl = {
             requests.fetchTrending
         }

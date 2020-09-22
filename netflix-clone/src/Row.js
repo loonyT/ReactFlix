@@ -4,6 +4,11 @@ import React, {
 } from 'react';
 import axios from './axios';
 import './Row.css';
+import Youtube from "react-youtube"; 
+import movieTrailer from 'movie-trailer'; 
+
+
+
 
 //here above, we are clearly seeing the advantage of working with componants
 
@@ -12,12 +17,13 @@ import './Row.css';
 //base url for poster path => 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
+function Row({ title, fetchUrl, isLargeRow }) {
+    
+    const [movies, setMovies] = useState ([]);
+    const [trailerUrl, setTrailerUrl] = useState(""); 
+    
+}
 
-function Row({
-    title,
-    fetchUrl,
-    isLargeRow
-}) {
 
 
     const [movies, setMovies] = useState([]);
@@ -50,6 +56,40 @@ function Row({
     }, [fetchUrl]); //its dependend on that variable so you have to include it here 
     //we have to dos this (telling user effect) because fetchUrl is passed first outside of the block 
 
+    const opts = {
+        
+        height: "390",
+        width: "100%",
+        playerVars : {
+         autoplay: 1,   
+        },
+        
+        
+        
+    };
+    /* when the video is already open and you click the url  */
+    const handleClick = (movie) => {
+        if (trailerUrl) {
+             setTrailerUrl(''); 
+        }
+        else {
+            
+           movieTrailer (movie?.name  ) 
+                         //with then, we are calling a promise
+            .then(url=> {
+            // place your url there              
+                         
+           const urlParams = new URLSearchParams (new URL(url).search)             
+                         
+             setTrailerUrl(urlParams.get('v'));
+                         
+                         
+                         })
+                         .catch(error => console.log(error))
+                         }
+                         };
+    
+    
 
     console.log(movies);
 
@@ -64,13 +104,11 @@ function Row({
             /*title */
         }
 
-        <
-        h2 > {
+        <h2> {
             title
-        } < /h2> 
+        } </h2> 
 
-        <
-        div className = "row__posters" >
+        <div className = "row__posters" >
 
         {
             /* several row__posters(s) */
@@ -79,7 +117,7 @@ function Row({
 
                 <
                 img
-                /* here, this is a react property which is being used : react render just what is needs to render and not the hole thing*/
+                /* here, this is a react property which is being used : react render just what is needs to render and not the hole thing */
                 key = {
                     movie
                 }
@@ -93,12 +131,14 @@ function Row({
                 alt = {
                     movie.name
                 }
-                />
+/>
+))}
+                
                 //beware because poster_path is not an URL 
-            ))
-        } <
-        /div>  <
-        /div>
+        
+</div>
+<youtube videoId={trailerUrl} opts = {opts} />
+</div>
     );
 }
 export default Row
